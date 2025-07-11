@@ -775,6 +775,54 @@ const App = () => {
     </section>
   );
 
+  const Footer = () => (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>Las Nubes Hostal</h3>
+            <p>Un refugio en las alturas</p>
+            <p>Experience the beauty of Cerro Punta and Volcán Barú at our cozy mountain hostel.</p>
+          </div>
+          <div className="footer-section">
+            <h4>Contact Info</h4>
+            <div className="contact-info">
+              <p>📍 El Alto las Nubes, Cerro Punta<br />Chiriquí, Panamá</p>
+              <p>📞 +507 6810-9090</p>
+              <p>✉️ lasnubeshostalinfo@gmail.com</p>
+              <p>📱 @lasnubeshostal</p>
+            </div>
+          </div>
+          <div className="footer-section">
+            <h4>Quick Links</h4>
+            <ul className="footer-links">
+              <li onClick={() => setCurrentSection('home')}>Home</li>
+              <li onClick={() => setCurrentSection('rooms')}>Rooms</li>
+              <li onClick={() => setCurrentSection('booking')}>Book Now</li>
+              <li onClick={() => setCurrentSection('about')}>About</li>
+              <li onClick={() => setCurrentSection('contact')}>Contact</li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h4>Amenities</h4>
+            <ul className="footer-amenities">
+              <li>🏔️ Mountain Views</li>
+              <li>🔥 Cozy Fireplace</li>
+              <li>🍳 Equipped Kitchen</li>
+              <li>📶 Free WiFi</li>
+              <li>🚗 Free Parking</li>
+              <li>🐕 Pet Friendly</li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 Las Nubes Hostal. All rights reserved.</p>
+          <p>Designed for mountain adventures in Cerro Punta, Panamá</p>
+        </div>
+      </div>
+    </footer>
+  );
+
   const renderCurrentSection = () => {
     switch(currentSection) {
       case 'home':
