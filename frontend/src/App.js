@@ -181,49 +181,258 @@ const App = () => {
   );
 
   const HomePage = () => (
-    <section className="hero-section">
-      <div className="hero-content">
-        <div className="hero-text">
-          <h1>Las Nubes Hostal</h1>
-          <p className="hero-subtitle">Un refugio en las alturas</p>
-          <p className="hero-description">
-            Experience breathtaking views of Volcán Barú and the charming town of Cerro Punta. 
-            Our cozy hostel offers comfortable accommodations with all the amenities you need 
-            for an unforgettable mountain getaway.
+    <div className="homepage">
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1>Las Nubes Hostal</h1>
+            <p className="hero-subtitle">Un refugio en las alturas</p>
+            <p className="hero-description">
+              Experience breathtaking views of Volcán Barú and the charming town of Cerro Punta. 
+              Our cozy hostel offers comfortable accommodations with all the amenities you need 
+              for an unforgettable mountain getaway.
+            </p>
+            <div className="hero-features">
+              <div className="feature-item">
+                <span className="feature-icon">🏔️</span>
+                <span>Mountain Views</span>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon">🔥</span>
+                <span>Cozy Fireplace</span>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon">🍳</span>
+                <span>Equipped Kitchen</span>
+              </div>
+              <div className="feature-item">
+                <span className="feature-icon">🐕</span>
+                <span>Pet Friendly</span>
+              </div>
+            </div>
+            <button 
+              className="cta-button"
+              onClick={() => setCurrentSection('booking')}
+            >
+              Book Your Stay
+            </button>
+          </div>
+          <div className="hero-image">
+            <img 
+              src="https://images.unsplash.com/photo-1602436324859-62a81466e723?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGhvc3RlbHxlbnwwfHx8fDE3NTIyMTY0MjZ8MA&ixlib=rb-4.1.0&q=85"
+              alt="Las Nubes Hostal mountain view"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="container">
+          <h2>Why Choose Las Nubes Hostal?</h2>
+          <p className="section-description">
+            Discover what makes our mountain retreat special
           </p>
-          <div className="hero-features">
-            <div className="feature-item">
-              <span className="feature-icon">🏔️</span>
-              <span>Mountain Views</span>
+          <div className="features-grid-home">
+            <div className="feature-card">
+              <div className="feature-icon-large">🏔️</div>
+              <h3>Spectacular Views</h3>
+              <p>Wake up to breathtaking panoramic views of Volcán Barú, Panama's highest peak, and the lush Cerro Punta valley.</p>
             </div>
-            <div className="feature-item">
-              <span className="feature-icon">🔥</span>
-              <span>Cozy Fireplace</span>
+            <div className="feature-card">
+              <div className="feature-icon-large">🔥</div>
+              <h3>Cozy Atmosphere</h3>
+              <p>Relax by our warm fireplace during cool mountain evenings and enjoy the tranquil ambiance of our hostel.</p>
             </div>
-            <div className="feature-item">
-              <span className="feature-icon">🍳</span>
-              <span>Equipped Kitchen</span>
+            <div className="feature-card">
+              <div className="feature-icon-large">🍳</div>
+              <h3>Fully Equipped</h3>
+              <p>Our communal kitchen is fully equipped for you to prepare your own meals and connect with fellow travelers.</p>
             </div>
-            <div className="feature-item">
-              <span className="feature-icon">🐕</span>
-              <span>Pet Friendly</span>
+            <div className="feature-card">
+              <div className="feature-icon-large">📶</div>
+              <h3>Stay Connected</h3>
+              <p>Enjoy complimentary high-speed WiFi throughout the property to share your mountain adventures.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon-large">🚗</div>
+              <h3>Free Parking</h3>
+              <p>Secure parking is available for all guests at no additional cost, perfect for exploring the region.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon-large">🎯</div>
+              <h3>Prime Location</h3>
+              <p>Located in the heart of Cerro Punta, close to hiking trails, local attractions, and stunning viewpoints.</p>
             </div>
           </div>
-          <button 
-            className="cta-button"
-            onClick={() => setCurrentSection('booking')}
-          >
-            Book Your Stay
-          </button>
         </div>
-        <div className="hero-image">
-          <img 
-            src="https://images.unsplash.com/photo-1602436324859-62a81466e723?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGhvc3RlbHxlbnwwfHx8fDE3NTIyMTY0MjZ8MA&ixlib=rb-4.1.0&q=85"
-            alt="Las Nubes Hostal mountain view"
-          />
+      </section>
+
+      {/* Location Section */}
+      <section className="location-section">
+        <div className="container">
+          <div className="location-content">
+            <div className="location-text">
+              <h2>Perfect Location in Cerro Punta</h2>
+              <p>
+                Las Nubes Hostal is ideally situated in El Alto las Nubes, offering you the perfect base 
+                to explore the natural wonders of Chiriquí Province. Our location provides easy access to 
+                hiking trails, coffee plantations, and some of the most spectacular mountain vistas in Panama.
+              </p>
+              <div className="location-highlights">
+                <div className="highlight-item">
+                  <span className="highlight-icon">🥾</span>
+                  <div>
+                    <h4>Hiking Trails</h4>
+                    <p>Access to various trails including paths to Volcán Barú summit</p>
+                  </div>
+                </div>
+                <div className="highlight-item">
+                  <span className="highlight-icon">☕</span>
+                  <div>
+                    <h4>Coffee Plantations</h4>
+                    <p>Visit local coffee farms and learn about Panama's finest coffee</p>
+                  </div>
+                </div>
+                <div className="highlight-item">
+                  <span className="highlight-icon">🌿</span>
+                  <div>
+                    <h4>Nature Reserves</h4>
+                    <p>Explore La Amistad National Park and cloud forest reserves</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="location-image">
+              <img 
+                src="https://images.unsplash.com/photo-1562323150-c3f486a6f185?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxtb3VudGFpbiUyMGhvc3RlbHxlbnwwfHx8fDE3NTIyMTY0MjZ8MA&ixlib=rb-4.1.0&q=85"
+                alt="Cerro Punta mountain landscape"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Rooms Preview Section */}
+      <section className="rooms-preview-section">
+        <div className="container">
+          <h2>Our Accommodations</h2>
+          <p className="section-description">
+            Choose from our comfortable rooms designed for every type of traveler
+          </p>
+          <div className="rooms-preview-grid">
+            <div className="room-preview-card">
+              <div className="room-preview-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1744471868062-17a54faa3cf5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwyfHxjb3p5JTIwYWNjb21tb2RhdGlvbnxlbnwwfHx8fDE3NTIyMTY0MzR8MA&ixlib=rb-4.1.0&q=85"
+                  alt="Big Room"
+                />
+              </div>
+              <div className="room-preview-info">
+                <h3>Big Room</h3>
+                <p>Queen bed • Private bathroom • Mountain view</p>
+                <div className="room-preview-price">$45/night</div>
+              </div>
+            </div>
+            <div className="room-preview-card">
+              <div className="room-preview-image">
+                <img 
+                  src="https://images.pexels.com/photos/18904093/pexels-photo-18904093.jpeg"
+                  alt="Mid-Size Room"
+                />
+              </div>
+              <div className="room-preview-info">
+                <h3>Mid-Size Room</h3>
+                <p>Double bed • Private bathroom • Cozy atmosphere</p>
+                <div className="room-preview-price">$35/night</div>
+              </div>
+            </div>
+            <div className="room-preview-card">
+              <div className="room-preview-image">
+                <img 
+                  src="https://images.pexels.com/photos/32895225/pexels-photo-32895225.jpeg"
+                  alt="Shared Room"
+                />
+              </div>
+              <div className="room-preview-info">
+                <h3>Shared Room</h3>
+                <p>2 bunk beds • Shared bathroom • Budget-friendly</p>
+                <div className="room-preview-price">$20/night</div>
+              </div>
+            </div>
+          </div>
+          <div className="rooms-preview-cta">
+            <button 
+              className="cta-button"
+              onClick={() => setCurrentSection('rooms')}
+            >
+              View All Rooms
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials-section">
+        <div className="container">
+          <h2>What Our Guests Say</h2>
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <div className="testimonial-content">
+                <p>"The view from Las Nubes Hostal is absolutely breathtaking! Waking up to see Volcán Barú every morning was magical. The cozy fireplace made our evenings perfect."</p>
+              </div>
+              <div className="testimonial-author">
+                <h4>Sarah M.</h4>
+                <p>United States</p>
+              </div>
+            </div>
+            <div className="testimonial-card">
+              <div className="testimonial-content">
+                <p>"Perfect location for exploring Cerro Punta. The hosts were incredibly welcoming and the kitchen facilities were excellent. Highly recommend for nature lovers!"</p>
+              </div>
+              <div className="testimonial-author">
+                <h4>Carlos R.</h4>
+                <p>Costa Rica</p>
+              </div>
+            </div>
+            <div className="testimonial-card">
+              <div className="testimonial-content">
+                <p>"Clean, comfortable, and the mountain views are unmatched. Great value for money and the staff goes above and beyond to make you feel at home."</p>
+              </div>
+              <div className="testimonial-author">
+                <h4>Emma K.</h4>
+                <p>Germany</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="final-cta-section">
+        <div className="container">
+          <div className="final-cta-content">
+            <h2>Ready for Your Mountain Adventure?</h2>
+            <p>Book your stay at Las Nubes Hostal and experience the beauty of Cerro Punta</p>
+            <div className="cta-buttons">
+              <button 
+                className="cta-button primary"
+                onClick={() => setCurrentSection('booking')}
+              >
+                Book Now
+              </button>
+              <button 
+                className="cta-button secondary"
+                onClick={() => setCurrentSection('contact')}
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 
   const RoomsPage = () => (
