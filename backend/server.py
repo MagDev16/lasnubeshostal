@@ -388,8 +388,8 @@ async def check_room_availability(room_type: str, check_in: date, check_out: dat
     
     return {
         "room_type": room_type,
-        "check_in": check_in,
-        "check_out": check_out,
+        "check_in": check_in.isoformat(),
+        "check_out": check_out.isoformat(),
         "available": available,
         "price_per_night": ROOM_TYPES[room_type]["price"]
     }
