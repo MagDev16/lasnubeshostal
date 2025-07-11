@@ -846,6 +846,7 @@ const App = () => {
     <div className="App">
       <NavBar />
       {renderCurrentSection()}
+      <Footer />
     </div>
   );
 };
