@@ -367,13 +367,21 @@ async def check_room_availability(room_type: str, check_in: date, check_out: dat
         "room_type": room_type,
         "status": {"$in": ["confirmed", "pending_payment"]},
         "$or": [
-            {"check_in": {"$lte": check_in}, "check_out": {"$gt": check_in}},
-            {"check_in": {"$lt": check_out}, "check_out": {"$gte": check_out}},
-            {"check_in": {"$gte": check_in}, "check_out": {"$lte": check_out}}
+            {"check_in": {"$lte": check_in.isoformat()}, "check_out": {"$gt": check_in.isoformat()}},
+            {"check_in": {"$lt": check_out.isoformat()}, "check_out": {"$gte": check_out.isoformat()}},
+            {"check_in": {"$gte": check_in.isoformat()}, "check_out": {"$lte": check_out.isoformat()}}
         ]
     })
     
-    booking_count = overlapping_bookings.count()
+    booking_count = bookings_collection.count_documents({
+        "room_type": room_type,
+        "status": {"$in": ["confirmed", "pending_payment"]},
+        "$or": [
+            {"check_in": {"$lte": check_in.isoformat()}, "check_out": {"$gt": check_in.isoformat()}},
+            {"check_in": {"$lt": check_out.isoformat()}, "check_out": {"$gte": check_out.isoformat()}},
+            {"check_in": {"$gte": check_in.isoformat()}, "check_out": {"$lte": check_out.isoformat()}}
+        ]
+    })
     
     # For simplicity, assume 1 room per type (can be extended for multiple rooms)
     available = booking_count == 0
