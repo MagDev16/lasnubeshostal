@@ -3,6 +3,7 @@ import './App.css';
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false);
   const [bookingData, setBookingData] = useState({
     guest_name: '',
     guest_email: '',
@@ -163,18 +164,36 @@ const App = () => {
     }).format(price);
   };
 
+  const navigate = (section) => {
+    setCurrentSection(section);
+    setMenuOpen(false);
+  };
+
   const NavBar = () => (
     <nav className="navbar">
       <div className="nav-container">
         <div className="nav-logo">
           <h2>Las Nubes Hostal</h2>
         </div>
-        <ul className="nav-menu">
-          <li onClick={() => setCurrentSection('home')}>Home</li>
-          <li onClick={() => setCurrentSection('rooms')}>Rooms</li>
-          <li onClick={() => setCurrentSection('booking')}>Book Now</li>
-          <li onClick={() => setCurrentSection('about')}>About</li>
-          <li onClick={() => setCurrentSection('contact')}>Contact</li>
+        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          {menuOpen ? '✕' : '☰'}
+        </button>
+        <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+          <li className={currentSection === 'home' ? 'active' : ''}>
+            <button onClick={() => navigate('home')}>Home</button>
+          </li>
+          <li className={currentSection === 'rooms' ? 'active' : ''}>
+            <button onClick={() => navigate('rooms')}>Rooms</button>
+          </li>
+          <li className={currentSection === 'booking' ? 'active' : ''}>
+            <button onClick={() => navigate('booking')}>Book Now</button>
+          </li>
+          <li className={currentSection === 'about' ? 'active' : ''}>
+            <button onClick={() => navigate('about')}>About</button>
+          </li>
+          <li className={currentSection === 'contact' ? 'active' : ''}>
+            <button onClick={() => navigate('contact')}>Contact</button>
+          </li>
         </ul>
       </div>
     </nav>
@@ -211,7 +230,8 @@ const App = () => {
                 <span>Pet Friendly</span>
               </div>
             </div>
-            <button 
+            <p className="hero-price">Desde <strong>$20/noche</strong></p>
+            <button
               className="cta-button"
               onClick={() => setCurrentSection('booking')}
             >
@@ -335,9 +355,10 @@ const App = () => {
                 <div className="room-preview-price">$45/night</div>
               </div>
             </div>
-            <div className="room-preview-card">
+            <div className="room-preview-card featured">
+              <div className="badge">Más Popular</div>
               <div className="room-preview-image">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/18904093/pexels-photo-18904093.jpeg"
                   alt="Mid-Size Room"
                 />
@@ -681,7 +702,7 @@ const App = () => {
             </div>
             <div className="contact-item">
               <strong>📞 Phone:</strong>
-              <p>+507 6810-9090</p>
+              <p><a href="tel:+50768109090" style={{color: 'inherit'}}>+507 6810-9090</a></p>
             </div>
             <div className="contact-item">
               <strong>✉️ Email:</strong>
@@ -788,7 +809,7 @@ const App = () => {
             <h4>Contact Info</h4>
             <div className="contact-info">
               <p>📍 El Alto las Nubes, Cerro Punta<br />Chiriquí, Panamá</p>
-              <p>📞 +507 6810-9090</p>
+              <p>📞 <a href="tel:+50768109090" style={{color: 'inherit'}}>+507 6810-9090</a></p>
               <p>✉️ lasnubeshostalinfo@gmail.com</p>
               <p>📱 @lasnubeshostal</p>
             </div>
