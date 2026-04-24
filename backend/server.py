@@ -9,6 +9,9 @@ import uvicorn
 from pymongo import MongoClient
 from bson import ObjectId
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI(title="Las Nubes Hostal API", version="1.0.0")
@@ -24,12 +27,19 @@ app.add_middleware(
 
 # Database connection
 MONGO_URL = os.environ.get('MONGO_URL', 'mongodb://localhost:27017/')
-client = MongoClient(MONGO_URL)
-db = client['las_nubes_hostal']
+try:
+    client = MongoClient(MONGO_URL, serverSelectionTimeoutMS=5000)
+    client.server_info()
+    db = client['las_nubes_hostal']
+    print("MongoDB connected successfully")
+except Exception as e:
+    print(f"MongoDB connection failed: {e}")
+    client = None
+    db = None
 
 # Collections
-bookings_collection = db['bookings']
-payment_transactions_collection = db['payment_transactions']
+bookings_collection = db['bookings'] if db is not None else None
+payment_transactions_collection = db['payment_transactions'] if db is not None else None
 
 # Initialize Stripe (will be ready when API key is provided)
 stripe_checkout = None
@@ -153,6 +163,8 @@ async def get_room_details(room_type: str):
 @app.post("/api/bookings")
 async def create_booking(booking: BookingRequest):
     """Create a new booking"""
+    if bookings_collection is None:
+        raise HTTPException(status_code=503, detail="Database not available. Please configure MONGO_URL.")
     try:
         # Validate room type
         if booking.room_type not in ROOM_TYPES:
@@ -338,6 +350,8 @@ async def get_checkout_status(session_id: str):
 @app.post("/api/contact")
 async def send_contact_message(message: ContactMessage):
     """Handle contact form submissions"""
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database not available. Please configure MONGO_URL.")
     try:
         contact_doc = {
             "message_id": str(uuid.uuid4()),
@@ -348,7 +362,7 @@ async def send_contact_message(message: ContactMessage):
             "status": "new",
             "created_at": datetime.now()
         }
-        
+
         db['contact_messages'].insert_one(contact_doc)
         
         return {"message": "Message sent successfully", "message_id": contact_doc["message_id"]}
