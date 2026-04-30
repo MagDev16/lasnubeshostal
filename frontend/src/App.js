@@ -90,29 +90,58 @@ const App = () => {
   const navigate = (section) => { setCurrentSection(section); setMenuOpen(false); };
 
   const NavBar = () => (
-    <nav className="navbar">
-      <div className="nav-container">
-        <div className="nav-logo" onClick={() => navigate('home')}>
-          <h2>Las Nubes Hostal</h2>
-          <span className="nav-tagline">{t.hero.subtitle}</span>
+    <>
+      <nav className="navbar">
+        <div className="nav-container">
+          <div className="nav-logo" onClick={() => navigate('home')}>
+            <div className="nav-logo-badge">LN</div>
+            <div className="nav-logo-text">
+              <h2>Las Nubes Hostal</h2>
+              <span className="nav-tagline">CERRO PUNTA · PANAMÁ</span>
+            </div>
+          </div>
+          <div className="nav-right">
+            <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+              {menuOpen ? '✕' : '☰'}
+            </button>
+            <ul className="nav-menu">
+              {[['home', t.nav.home], ['rooms', t.nav.rooms], ['booking', t.nav.bookNow], ['about', t.nav.about], ['contact', t.nav.contact]].map(([s, label]) => (
+                <li key={s} className={currentSection === s ? 'active' : ''}>
+                  <button onClick={() => navigate(s)}>{label}</button>
+                </li>
+              ))}
+            </ul>
+            <button className="lang-toggle" onClick={() => setLang(lang === 'es' ? 'en' : 'es')}>
+              {lang === 'es' ? 'EN' : 'ES'}
+            </button>
+          </div>
         </div>
-        <div className="nav-right">
-          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-            {menuOpen ? '✕' : '☰'}
-          </button>
-          <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-            {[['home', t.nav.home], ['rooms', t.nav.rooms], ['booking', t.nav.bookNow], ['about', t.nav.about], ['contact', t.nav.contact]].map(([s, label]) => (
-              <li key={s} className={currentSection === s ? 'active' : ''}>
-                <button onClick={() => navigate(s)}>{label}</button>
-              </li>
-            ))}
-          </ul>
+      </nav>
+
+      <div className={`mobile-overlay ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
+        <div className="mobile-overlay-header">
+          <button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Cerrar menú">✕</button>
+        </div>
+        <ul className="mobile-menu-items">
+          {[['home', t.nav.home], ['rooms', t.nav.rooms], ['booking', t.nav.bookNow], ['about', t.nav.about], ['contact', t.nav.contact]].map(([s, label]) => (
+            <li key={s} className={currentSection === s ? 'active' : ''}>
+              <button onClick={() => navigate(s)}>{label}</button>
+            </li>
+          ))}
+        </ul>
+        <button className="mobile-cta" onClick={() => navigate('booking')}>
+          {t.nav.bookNow} →
+        </button>
+        <a href="https://instagram.com/lasnubeshostal" className="mobile-instagram"
+           target="_blank" rel="noreferrer">📷 @lasnubeshostal</a>
+        <div className="mobile-lang">
           <button className="lang-toggle" onClick={() => setLang(lang === 'es' ? 'en' : 'es')}>
             {lang === 'es' ? 'EN' : 'ES'}
           </button>
         </div>
       </div>
-    </nav>
+      {menuOpen && <div className="mobile-backdrop" onClick={() => setMenuOpen(false)} />}
+    </>
   );
 
   const HomePage = () => (
